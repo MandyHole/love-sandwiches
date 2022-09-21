@@ -70,6 +70,16 @@ def calculate_surplus_data(sales_row):
         surplus_data.append(surplus)
     return surplus_data
 
+def get_last_5_entries():
+    """
+    Collects columns of data from sales worksheet
+    """
+    sales = SHEET.worksheet('sales')
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    return columns
 # def update_surplus_worksheet(value):
 #     """
 #     Add a row with the surplus for the day into the surplus worksheet
@@ -91,4 +101,5 @@ def main():
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "surplus")
 print("welcome to love sandwiches")
-main()
+# main()
+sales_columns = get_last_5_entries()
